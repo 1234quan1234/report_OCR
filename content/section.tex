@@ -38,12 +38,34 @@ Sau khi chuyển đổi sang định dạng ảnh, toàn bộ dữ liệu ảnh 
 \textbf{Lý do thực hiện:} Đây là ngưỡng độ phân giải tối ưu cho các bài toán OCR tiếng Việt. Nếu DPI quá thấp (dưới 150), các nét chữ sẽ bị mờ, gây khó khăn cho việc nhận dạng dấu. Nếu DPI quá cao (trên 600), dung lượng lưu trữ sẽ tăng đột biến mà không cải thiện đáng kể độ chính xác, gây lãng phí tài nguyên tính toán.
 
 \subsection{Tự động hóa trích xuất đặc trưng }
-Tại bước này, chúng em sử dụng công cụ \textbf{Google Vision API} để thực hiện hai nhiệm vụ chính:
+Tại bước này, nhóm sử dụng công cụ \textbf{Google Vision API} để thực hiện hai nhiệm vụ chính:
 \begin{enumerate}
     \item Tự động phát hiện và vẽ các hộp bao (Bounding Box) quanh các dòng văn bản.
     \item Nhận dạng ký tự quang học (OCR) để trích xuất văn bản thô ban đầu.
 \end{enumerate}
 Kết quả của bước này là dữ liệu \texttt{raw}, bao gồm các ảnh crop sơ bộ (\texttt{crop\_img}) và các tệp thông tin tọa độ, nhãn text tương ứng. Việc sử dụng Google Vision giúp giảm thiểu đáng kể thời gian gán nhãn thủ công ban đầu nhờ độ chính xác tương đối cao của mô hình.
+
+Dữ liệu đầu ra được tổ chức theo hai định dạng chính:
+\begin{itemize}
+    \item \textbf{rec\_gt.txt}: Chứa ánh xạ giữa đường dẫn ảnh crop và văn bản nhận dạng tương ứng.
+    \item \textbf{Label.txt}: Chứa tọa độ bounding box dưới dạng 4 điểm (top-left, top-right, bottom-right, bottom-left).
+\end{itemize}
+
+\textbf{Ví dụ minh họa cấu trúc file rec\_gt.txt:}
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+fi/p0143_020.jpg    Ban Van co Dai hanh khien va Hanh khien 5 dao dung dau, sau
+fi/p0143_021.jpg    cung co lay chuc Boc xa la Hanh khien. Thu den Thuong thu dung
+fi/p0143_022.jpg    dau bo. Phan Huy Chu cho rang: "Bay gio moi dat hai bo la Lai bo,
+fi/p0143_023.jpg    Le bo; thuoc quan co Lang trung, Vien ngoai lang, Chu su".
+\end{lstlisting}
+
+\textbf{Ví dụ minh họa cấu trúc file Label.txt:}
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+fi/p0449_026.jpg    [[186, 4891], [3842, 4891], [3842, 5058], [186, 5058]]
+fi/p0449_027.jpg    [[196, 5089], [1586, 5089], [1586, 5221], [196, 5221]]
+fi/p0449_028.jpg    [[407, 5303], [3842, 5303], [3842, 5456], [407, 5456]]
+fi/p0449_029.jpg    [[196, 5467], [3837, 5467], [3837, 5630], [196, 5630]]
+\end{lstlisting}
 
 \subsection{Quy trình kiểm thử và Căn chỉnh thủ công}
 Đây là bước quan trọng nhất để đảm bảo chất lượng bộ dữ liệu. Dữ liệu sau khi đi qua Google Vision được kiểm tra thủ công từng trang (human-in-the-loop). Các công việc cụ thể bao gồm:
