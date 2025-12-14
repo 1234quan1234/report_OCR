@@ -1,0 +1,32 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# PDF output (optional - uncomment if you don't want to track PDFs)
+# *.pdf
+
+# Other LaTeX temporary files
+*.bbl
+*.blg
+*.lof
+*.lot
+*.dvi
+*.ps
+*.eps
+*.backup
+
+# Minted cache (if using minted package)
+_minted-*/
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

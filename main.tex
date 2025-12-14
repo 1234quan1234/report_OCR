@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+
+\usepackage{hcmus-report-template}
+
+% Disable indentation on new paragraphs
+\setlength{\parindent}{0pt}
+
+% Line spacing 1.5
+\renewcommand{\baselinestretch}{1.5}
+
+% Optional: graphic path
+% \graphicspath{PATH_TO_GRAPHIC_FOLDER}
+
+% To use Times font family, uncomment this row
+% \usepackage{mathptmx}
+
+% To use roman section / subsection, uncomment these rows
+% \renewcommand{\thesection}{\Roman{section}}
+% \renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+
+% Define course name, report name and report title.
+\newcommand{\coursename}{Nhập môn xử lý ngôn ngữ tự nhiên}
+\newcommand{\reportname}{Low resource NLP}
+\newcommand{\reporttitle}{Báo cáo Giữa kỳ}
+\newcommand{\studentname}{Lê Hải Đăng (23122005)\\Nguyễn Nhật Minh (23122010)\\Nguyễn Văn Khoa (23122016)\\Bùi Anh Quân (23122017)}
+\newcommand{\teachername}{Thầy Đinh Điền \\ NCS Lâm Hương}
+
+% Header
+\lhead{\reporttitle}
+\rhead{
+Trường Đại học Khoa học Tự nhiên - ĐHQG HCM\\
+\coursename
+}
+
+% Footer
+\newcommand{\leftfooter}{}
+\lfoot{\leftfooter}
+
+% ============ DOCUMENT ============
+\begin{document}
+
+\pagenumbering{roman}
+\input{content/title.tex}
+
+\tableofcontents
+\pagebreak
+% \listoftables
+% \pagebreak
+% \listoffigures
+% \pagebreak
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{content/section}
+% \input{content/hinhanh}
+% \input{content/bangbieu}
+% \input{content/congthuctoan}
+% \input{content/thuattoan}
+% \input{content/code}
+% \input{content/ngonngu}
+% \input{content/cite}
+
+% References
+% ref/ref.tex  — liệt kê tài liệu thủ công, không dùng BibTeX
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{section}{Tài liệu}
+\section*{Tài liệu tham khảo}
+
+\begin{itemize}
+  % --- NGUỒN DỮ LIỆU GỐC (BẮT BUỘC PHẢI CÓ) ---
+  \item \textbf{Lịch sử Việt Nam - Tập 3: Từ thế kỷ XV đến thế kỷ XVI} —  
+  Tạ Ngọc Liễn (Chủ biên).  
+  NXB Khoa học Xã hội (2017).
+
+  \item \textbf{Lịch sử Việt Nam - Tập 14: Từ năm 1975 đến năm 1986} —  
+  Trần Đức Cường (Chủ biên).  
+  NXB Khoa học Xã hội (2017).
+
+  % --- CÔNG CỤ & CÔNG NGHỆ ---
+  \item \textbf{Google Cloud Vision API Documentation} — Google Cloud.  
+  \href{https://cloud.google.com/vision/docs/ocr}{cloud.google.com/vision/docs/ocr}
+
+  \item \textbf{PP-OCR: A Practical Ultra Lightweight OCR System} —  
+  Yuning Du, Chenxia Li, Ruoyu Guo, et al. (Baidu Inc.).  
+  \textit{arXiv preprint arXiv:2009.09941}, 2020. (Cơ sở lý thuyết của công cụ PPOCRLabel).  
+  \href{https://arxiv.org/abs/2009.09941}{arxiv.org/abs/2009.09941}
+
+\end{itemize}
+
+% Appendix
+\appendix
+% Add \cleardoublepage to move appendices to next page.
+% \input{appendix/appendix.tex}
+\end{document}
